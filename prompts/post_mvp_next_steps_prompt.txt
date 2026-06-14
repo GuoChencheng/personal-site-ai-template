@@ -1,0 +1,17 @@
+Read PROJECT_SPEC.md, AGENTS.md, README.md, docs/VISUAL_EDITOR_STYLE_CLEANUP.md, and docs/FINAL_RELEASE_READINESS_SUMMARY.md, then plan the best post-MVP improvement batch.
+
+Recommended post-MVP focus:
+
+1. Add a dev-only source apply workflow for exported editor JSON, if the project owner accepts a local file-write path.
+2. Add automated browser visual regression coverage for /, /about, /projects, /projects/[slug], /notes, /notes/[slug], /publications, /cv, /contact, /ask, and /editor across desktop/tablet/mobile.
+3. Improve bilingual authoring by exposing translation overlay status in /editor and warning when canonical and localized content diverge.
+4. Add an assistant evaluation suite with source-grounding fixtures, out-of-scope fixtures, and provider-failure checks.
+5. Consider Markdown/MDX ingestion for notes only if it can coexist cleanly with the typed content model.
+6. Add optional streaming responses for /ask without weakening fallback behavior or source references.
+7. Review whether old prompt files should be archived or summarized into a single project history note.
+
+Constraints:
+- do not add auth, database-backed CMS, analytics, or multi-user collaboration unless explicitly requested
+- preserve file-based source content and source-grounded assistant behavior
+- keep dependencies lean
+- run npm run typecheck, npm run lint, and npm run build before stopping

@@ -1,0 +1,19 @@
+Read PROJECT_SPEC.md, AGENTS.md, README.md, and docs/EDITOR_ACCESS_CONTROL.md, then execute the next focused post-access-control batch.
+
+Recommended next batch:
+
+Add a production-safe owner editing option only if the project owner explicitly wants hosted editing.
+
+Suggested scope:
+1. Keep the current default: `/editor` works locally and returns 404 in production.
+2. If hosted editing is required, add real authentication before enabling `/editor` in production.
+3. Prefer a minimal provider-supported auth layer or deployment-platform protection over building custom user management.
+4. Add tests or route checks proving `/editor` is unavailable in production mode and public routes remain available.
+5. Add browser-based visual verification for public routes and the local-only editor when environment access permits.
+6. Consider a dev-only source apply workflow for exported editor JSON.
+
+Constraints:
+- do not expose `/editor` publicly without authentication
+- do not add a database-backed CMS unless explicitly requested
+- preserve the file-based content model and source-grounded assistant behavior
+- run npm run typecheck, npm run lint, and npm run build before stopping

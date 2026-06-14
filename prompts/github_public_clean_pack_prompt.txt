@@ -1,0 +1,218 @@
+Read PROJECT_SPEC.md and AGENTS.md, then execute a focused packaging batch for this project.
+
+Current project status:
+- The project is already in a demo-ready MVP state.
+- The goal of this batch is NOT to add major new features.
+- The goal is to produce a separate, clean, public-safe pack specifically intended for uploading to GitHub as a public repository.
+- This clean pack should be a curated public-project version of the current codebase, not a messy copy of the whole working directory.
+
+Important requirements:
+- I want a separate clean pack for GitHub upload.
+- Do NOT treat the entire current working directory as the final public repo by default.
+- Do NOT create many redundant backup/version folders.
+- Keep one clean export pack as the main deliverable for this batch.
+- Do NOT assume git is already initialized or available.
+- Do NOT rely on git history/diff for this task.
+
+Before doing anything else:
+1. Save the exact prompt you are currently following into a new file under prompts/, for example prompts/github_public_clean_pack_prompt.txt.
+2. Do NOT create many redundant code versions or backup files. Keep one clean latest implementation inside the export pack workflow. Avoid filenames like final_v2, final_final, backup, old, temp unless absolutely necessary.
+3. Work in one coherent batch. Do not stop after every small subtask.
+4. Make reasonable implementation decisions without asking about minor naming or formatting details.
+
+Main goal of this batch:
+Create a separate clean GitHub-upload pack for this project that is suitable for a public repository.
+
+Primary outcomes required:
+A. A separate export directory containing the clean public pack
+B. Removal/exclusion of generated files, secrets, local-only clutter, and unnecessary artifacts
+C. A stronger public-facing repository structure and documentation
+D. A concise release-style summary of what is included and excluded
+
+PART A — CREATE A SEPARATE CLEAN PACK
+
+1. Create a new clean export directory inside the project root or another clearly documented location, for example:
+- github-pack/
+- public-pack/
+- github-clean-pack/
+
+Choose one clear name and use it consistently.
+
+2. This clean pack should include the source files and docs needed for a good public GitHub repository, but should not simply mirror all local working files blindly.
+
+3. The clean pack should be structured so that I can:
+- inspect it
+- optionally initialize git there
+- upload it to GitHub as a public project
+
+PART B — REMOVE / EXCLUDE NON-PUBLIC OR GENERATED CONTENT
+
+Carefully audit what should NOT go into the public GitHub pack.
+
+Exclude or remove from the clean pack as appropriate:
+- node_modules
+- .next
+- coverage
+- *.tsbuildinfo
+- .env
+- .env.local
+- .env.production
+- any real API keys or secrets
+- local cache files
+- temporary exports
+- local machine artifacts such as .DS_Store
+- obviously stale or duplicate generated files
+- bulky local-only artifacts not needed for the public repo
+
+Important:
+- Check for any secret-bearing files or values.
+- If real secrets appear in tracked or source-adjacent files, flag them clearly in the summary and remove them from the clean pack.
+- Do NOT expose anything that would be unsafe in a public repository.
+
+PART C — CURATE WHAT TO KEEP
+
+The clean pack should keep the parts that are actually useful for a public GitHub project, including as appropriate:
+- app/
+- components/
+- lib/
+- content/
+- public/
+- styles/
+- docs/
+- README.md
+- package.json
+- package-lock.json or equivalent lockfile if already appropriate
+- tsconfig.json
+- next.config.* if present
+- tailwind config if present
+- .gitignore
+- .env.example
+- LICENSE if present, or add a sensible lightweight license file if missing and appropriate
+- selected prompts that are genuinely useful to explain the project workflow
+
+Do NOT keep an excessive number of historical prompts or repetitive docs.
+Curate them down to a reasonable public set.
+
+PART D — PUBLIC REPO DOCUMENTATION QUALITY
+
+Improve the public-facing repository materials in the clean pack.
+
+1. README
+Make sure the clean pack README is suitable for GitHub visitors.
+It should clearly explain:
+- what the project is
+- main features
+- bilingual support
+- AI assistant
+- visual editor
+- public site vs private editor model
+- how to run locally
+- environment variables
+- current limitations
+- roadmap / post-MVP ideas
+
+2. .env.example
+Ensure a safe and useful .env.example exists with placeholder values only.
+
+3. LICENSE
+If a license file is missing, add a reasonable one suitable for an open public project, unless the existing project docs strongly imply a different choice.
+Prefer a lightweight permissive option.
+
+4. Optional repository polish
+If useful and lightweight, add:
+- a short repo overview doc
+- screenshots folder reference if screenshots already exist
+- a concise architecture note
+
+PART E — PUBLIC/PRIVATE BOUNDARY IN DOCUMENTATION
+
+Since the site includes an editor, make sure the clean pack documentation clearly explains:
+- the editor is an owner maintenance tool
+- it should not be publicly exposed in production without protection
+- the public site and private editor are conceptually separate
+- the repo being public does NOT mean the live editor should be public
+
+PART F — CLEAN PACK VALIDATION
+
+Within the clean pack, ensure the project still looks coherent and runnable as a public codebase.
+
+At minimum:
+- inspect package/config structure
+- ensure critical source folders are present
+- ensure .gitignore is correct for a public repo
+- ensure .env.example is safe
+- ensure README is coherent
+- ensure the pack does not contain obviously generated/install output
+
+If feasible within this batch, also run or reason-check that the clean pack would still be a sensible standalone project tree for:
+- npm install
+- npm run dev
+- npm run typecheck
+- npm run lint
+- npm run build
+
+If fully re-running inside the clean pack is too heavy for this batch, explain clearly what was and was not revalidated.
+
+PART G — OUTPUTS
+
+Produce:
+1. the clean export directory
+2. a concise summary file inside it, for example:
+   - PUBLIC_PACK_SUMMARY.md
+or
+   - GITHUB_PACK_SUMMARY.md
+
+This summary should state:
+- what was included
+- what was excluded
+- what was cleaned
+- whether any potentially sensitive files were found and removed
+- what a user should do next to upload it to GitHub
+
+PART H — SELF-REVIEW
+
+Before stopping, perform a self-review and verify:
+- the clean pack is meaningfully cleaner than the working directory
+- no obviously generated/install-heavy folders are included
+- no obvious secrets are included
+- README/.env.example/.gitignore are public-repo-ready
+- the pack feels like a professional GitHub project, not a random folder dump
+- prompt file for this batch is saved
+- next-step recommendation is also saved under prompts/
+
+If any small-to-medium issue is found during self-review and is feasible to fix in this batch, fix it before stopping.
+
+QUALITY BAR BEFORE STOPPING
+
+Before ending this batch, make sure:
+- a separate clean GitHub-upload pack exists
+- generated/install clutter is excluded
+- public-facing docs are improved
+- secrets/local-only files are excluded
+- the pack is reasonably ready for public GitHub upload
+- docs explain the public site vs private editor distinction
+- final summary file is included in the clean pack
+- prompt file for this batch is saved
+- next-step recommendation prompt is also saved under prompts/
+
+SCOPE DISCIPLINE
+
+- Focus on creating a clean, public-safe GitHub pack.
+- Do NOT build new product features.
+- Do NOT do a major architecture rewrite.
+- Do NOT create many parallel archive folders.
+- Prefer one strong curated public pack over broad but messy copying.
+
+Use the repo-scoped skills when relevant.
+
+At the end, report:
+1. what was included in the clean pack
+2. what was excluded
+3. whether any sensitive/local-only files were found and removed
+4. key files changed or created
+5. the path of the clean export pack
+6. what still needs to be done manually before uploading to GitHub
+7. self-review results
+8. recommended next step
+
+Also save the exact next-step recommendation as a new prompt file under prompts/.
